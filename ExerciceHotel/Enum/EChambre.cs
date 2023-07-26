@@ -6,7 +6,5 @@ using System.Threading.Tasks;
 
 namespace ExerciceHotel.Enum
 {
-    internal class EChambre
-    {
-    }
+    enum EChambre { libre,occupé, nettoyage }
 }

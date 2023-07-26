@@ -8,7 +8,7 @@ namespace ExerciceHotel.Classe
 {
     internal class Client
     {
-       private int Id { get; set; } 
+       private int Id { get; set; }
         private string LastName { get; set; }
         private string FirstName { get; set; }
         private string Phone { get; set; }
@@ -19,6 +19,11 @@ namespace ExerciceHotel.Classe
             LastName = lastName;
             FirstName = firstName;
             Phone = phone;
+        }
+
+        public override string ToString()
+        {
+            return $"Id : {Id}\nNom : {LastName}\nPrénom : {FirstName}\nTéléphone : {Phone} ";
         }
     }
 }

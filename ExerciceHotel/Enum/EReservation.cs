@@ -6,12 +6,6 @@ using System.Threading.Tasks;
 
 namespace ExerciceHotel.Enum
 {
-    public enum Statut 
-    {
-        Prevu,
-        enCours, 
-        Fini, 
-        Annule 
-    } 
+    public enum EReservation {  Prevu, enCours, Fini, Annule } 
 
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExerciceHotel.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,8 +10,16 @@ namespace ExerciceHotel.Classe
     internal class Reservation
     {
         private int Id { get; set; }
-        private enum Statut { Prevu, enCours, Fini, Annule  }
+         EReservation EReservation { get; set; }
         private List<Chambre> ChambreList { get; set;} = new List<Chambre>();
-        private Client client { get; set; } 
+        private Client Client { get; set; }
+
+        public Reservation(int id, List<Chambre> chambreList, Client client, EReservation enumReservation)
+        {
+            Id = id;
+            ChambreList = chambreList;
+            Client = client;
+            EReservation = enumReservation;
+        }
     }
 }
