@@ -11,17 +11,15 @@ namespace Exercice10
     {
         public void AfficherResultat()
         {
-            UniteTemperature fahrenheit = UniteTemperature.Fahrenheit;
-            string a = fahrenheit.ToString();
-            UniteTemperature celsius  = UniteTemperature.Celsius;
-            string b = celsius.ToString();
-            UniteTemperature kelvin = UniteTemperature.Kelvin;
-            string c = kelvin.ToString();            
-            Thermometre thermometreA = new Thermometre(10, fahrenheit);
-            Console.WriteLine($"{thermometreA.ConversionDegreKelvinToFahrenheit()} {a}");
-            Console.WriteLine($"{thermometreA.ConversionDegreFahrenheitToKelvin()} {c}");
-            Console.WriteLine($"{thermometreA.ConversionDegreKelvinToCelcius()} {b}");
-            Console.WriteLine($"{thermometreA.ConversionDegreCelciusToKelvin()} {c}");                    
+            UniteTemperature fahrenheit = UniteTemperature.Fahrenheit;       
+            UniteTemperature celsius  = UniteTemperature.Celsius;         
+            UniteTemperature kelvin = UniteTemperature.Kelvin;              
+            Thermometre thermometreA = new Thermometre(1, celsius);
+            Console.WriteLine(thermometreA.Conversion());
+            Thermometre thermometreB = new Thermometre(1, fahrenheit);
+            Console.WriteLine(thermometreB.Conversion());
+            Thermometre thermometreC = new Thermometre(1, kelvin);
+            Console.WriteLine(thermometreC.Conversion());
         }
       
     }

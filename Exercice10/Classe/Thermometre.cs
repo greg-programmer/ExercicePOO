@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Exercice10
 {
@@ -27,29 +28,29 @@ namespace Exercice10
             TemperatureKelvin = temperatureKelvin;
             UniteTemperature = uniteTemperature;
         }
-        public double ConversionDegreKelvinToCelcius()
+
+        public string Conversion()
         {
-            _TemperatureKelvin -= 273.15;
-            return _TemperatureKelvin;
-        }
-        public double ConversionDegreCelciusToKelvin()
-        {
-            _TemperatureKelvin += 273.15;
-            return _TemperatureKelvin;
-        }
-        public double ConversionDegreFahrenheitToKelvin()
-        {
-            _TemperatureKelvin += 457.87;
-            return TemperatureKelvin;
-        }
-        public double ConversionDegreKelvinToFahrenheit()
-        {
-            _TemperatureKelvin -= 457.87;
-            return TemperatureKelvin;
-        }
-        public override string ToString()
-        {
-            return $"Affichage de la température {_TemperatureKelvin}";
-        }
+            double result;
+            string stringResul = "";
+            if(UniteTemperature == UniteTemperature.Fahrenheit)
+            {
+                result = _TemperatureKelvin -= 457.87;
+                stringResul = $"{result}  {UniteTemperature}  ";
+            }
+            else if(UniteTemperature == UniteTemperature.Celsius)
+            {
+                result = _TemperatureKelvin -= 273.15;
+                stringResul = $"{result} {UniteTemperature} ";
+            }
+            else if(UniteTemperature == UniteTemperature.Kelvin)
+            {              
+                stringResul = $"{_TemperatureKelvin}  {UniteTemperature} ";
+            }
+            return stringResul;
+        }      
+      
     }
 }
+
+
