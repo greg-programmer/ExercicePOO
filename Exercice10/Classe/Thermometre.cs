@@ -24,7 +24,8 @@ namespace Exercice10
 
         public Thermometre(double temperatureKelvin, UniteTemperature uniteTemperature)
         {
-            TemperatureKelvin = temperatureKelvin;           
+            TemperatureKelvin = temperatureKelvin;
+            UniteTemperature = uniteTemperature;
         }
         public double ConversionDegreKelvinToCelcius()
         {
