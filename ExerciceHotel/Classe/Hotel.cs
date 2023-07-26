@@ -8,8 +8,12 @@ namespace ExerciceHotel.Classe
 {
     internal class Hotel
     {
-        private List<Client> clients = new List<Client>();
+        public List<Client> Clients = new List<Client>();
         private List<Chambre> chambres = new List<Chambre>();
         private Client Client { get; set; } 
+        public void AjouterUnClient(Client client)
+        {
+            Clients.Add(client);    
+        }
     }
 }
