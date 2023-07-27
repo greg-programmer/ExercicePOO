@@ -37,5 +37,13 @@ namespace ExerciceHotel.Classe
             var annulerReservation = reservations.FirstOrDefault(reservation => reservation.Client.Id == client.Id);
             reservations.RemoveAt(client.Id);
         }
+        public override string ToString()
+        {
+            return $" ==============\n" +
+                 $" Nom : {LastName}\n" +
+                 $" Prénom : {FirstName}\n" +
+                 $" Tél : {Phone}\n";
+               
+        }
     }
 }

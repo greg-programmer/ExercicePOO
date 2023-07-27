@@ -9,11 +9,13 @@ namespace ExerciceHotel.Classe
 {
     internal class Ihm 
     {
-        EChambre EChambre { get; set; }   
-      public void IHM()
+        EChambre EChambre { get; set; }
+        List<Chambre> listeChambres = new List<Chambre>();
+        List<Reservation> reservations = new List<Reservation>();
+        List<Client> clients = new List<Client>();
+        public void IHM()
         {
-            List<Chambre> listeChambres = new List<Chambre>();
-            List<Reservation> reservations = new List<Reservation>();
+          
             Hotel hotel = new Hotel();
             // ======= Initilisation des chambres d'hotel =======//
             Chambre chambreA = new Chambre(1, EChambre.Libre, 2, 45);
@@ -36,18 +38,34 @@ namespace ExerciceHotel.Classe
             listeChambres.Add(chambreI);
             //==========================================================//
             Client clientA = new Client("Schoemaecker","Grégory","0606060606");          
-            hotel.AjouterUnClient(clientA);
+            clients.Add(clientA);
             clientA.FaireUneReservation(clientA,listeChambres,reservations);            
             Client clientB = new Client( "Schoemaecker", "Aurélie", "0606060606");
-            hotel.AjouterUnClient(clientB);
+            clients.Add(clientB);
             clientB.FaireUneReservation(clientB,listeChambres,reservations);
+            clientB.FaireUneReservation(clientB, listeChambres, reservations);
+            clientB.FaireUneReservation(clientB, listeChambres, reservations);
+            clientB.FaireUneReservation(clientB, listeChambres, reservations);
             clientB.AnnulerUneReservation(clientB,listeChambres,reservations);
-            foreach (var item in hotel.Clients)
-            {
-                Console.WriteLine(item);
-            }
-         
-
+            AfficherLalisteDesClients();
+            AfficherLalisteDesReservationsDuClient();
         }
+        public void AfficherLalisteDesClients()
+        {
+            Console.WriteLine("===== Liste des clients =====");
+            foreach (var listeDesCliens in clients)
+            {
+                Console.WriteLine(listeDesCliens);
+            }
+        }
+        public void AfficherLalisteDesReservationsDuClient()
+        {
+            Console.WriteLine("===== Liste des reservations =====");
+            foreach (var listeDesReservations in reservations)
+            {
+                Console.WriteLine(listeDesReservations);
+            }
+        }
+
     }
 }
