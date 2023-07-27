@@ -46,6 +46,7 @@ namespace ExerciceHotel.Classe
             {
                 Console.WriteLine(item);
             }
+         
 
         }
     }
