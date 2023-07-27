@@ -26,7 +26,7 @@ namespace ExerciceHotel.Classe
         }
         public override string ToString()
         {
-            return $"{Client.FirstName} {Client.LastName} Chambre reservé : {Id} ";
+            return $"{Client.FirstName} {Client.LastName} reservé : Chambre n°{Id} ";
         }
     }
 }
