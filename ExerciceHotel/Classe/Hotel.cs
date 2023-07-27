@@ -10,10 +10,10 @@ namespace ExerciceHotel.Classe
     {
         public List<Client> Clients = new List<Client>();
         private List<Chambre> chambres = new List<Chambre>();
-        private Client Client { get; set; } 
+        public Client Client { get; set; } 
         public void AjouterUnClient(Client client)
         {
             Clients.Add(client);    
-        }
+        } 
     }
 }
