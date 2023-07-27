@@ -48,7 +48,9 @@ namespace ExerciceHotel.Classe
             clientB.FaireUneReservation(clientB, listeChambres, reservations);
             clientB.AnnulerUneReservation(clientB,listeChambres,reservations);
             AfficherLalisteDesClients();
-            AfficherLalisteDesReservationsDuClient();
+            AfficherLalisteDesReservationsDesClient();
+            AfficherLalisteDesReservationsDuClient(clientB);
+            AfficherLalisteDesReservationsDuClient(clientA);
         }
         public void AfficherLalisteDesClients()
         {
@@ -58,12 +60,22 @@ namespace ExerciceHotel.Classe
                 Console.WriteLine(listeDesCliens);
             }
         }
-        public void AfficherLalisteDesReservationsDuClient()
+        public void AfficherLalisteDesReservationsDesClient()
         {
             Console.WriteLine("===== Liste des reservations =====");
             foreach (var listeDesReservations in reservations)
             {
                 Console.WriteLine(listeDesReservations);
+            }
+        }
+        public void AfficherLalisteDesReservationsDuClient(Client client)
+        {
+            var reservationClient = reservations.Where(reservation => reservation.Client.FirstName == client.FirstName &&
+            reservation.Client.LastName == client.LastName).ToList();
+            Console.WriteLine($"===== Réservation du client {client.FirstName} {client.LastName}  =====");
+            foreach (var item in reservationClient)
+            {
+                Console.WriteLine(item);
             }
         }
 
