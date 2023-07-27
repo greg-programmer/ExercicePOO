@@ -31,11 +31,11 @@ namespace ExerciceHotel.Classe
         }
         public void AnnulerUneReservation(Client client,List<Chambre> chambres, List<Reservation> reservations)
         {
-            var ChambreOccupeEnLibre = chambres.FirstOrDefault(chambres => chambres.Numero == client.Id);
-            client.Id = 0;
+            var ChambreOccupeEnLibre = chambres.FirstOrDefault(chambres => chambres.Numero == client.Id);          
             ChambreOccupeEnLibre.EChambre = EChambre.Libre;
             var annulerReservation = reservations.FirstOrDefault(reservation => reservation.Client.Id == client.Id);
-            reservations.RemoveAt(client.Id);
+            reservations.RemoveAt(annulerReservation.Id);
+            client.Id = 0;
         }
         public override string ToString()
         {
