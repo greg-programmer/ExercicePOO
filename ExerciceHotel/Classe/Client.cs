@@ -9,11 +9,10 @@ namespace ExerciceHotel.Classe
 {
     internal class Client
     {
-       private int Id { get; set; } = 0; //l'Id sera remplacé par le numéro de la chambre reservé//
-        public string LastName { get; set; }
-        public string FirstName { get; set; }
+       public int Id { get; set; } = 0; //l'Id sera remplacé par le numéro de la chambre reservé//
+        public string LastName { get; private set; }
+        public string FirstName { get; private set; }
         public string Phone { get; set; }   
-        EReservation EReservation { get; set; }
         public Client(string lastName, string firstName, string phone)
         {        
             LastName = lastName;
@@ -31,10 +30,15 @@ namespace ExerciceHotel.Classe
         }
         public void AnnulerUneReservation(Client client,List<Chambre> chambres, List<Reservation> reservations)
         {
-            var ChambreOccupeEnLibre = chambres.FirstOrDefault(chambres => chambres.Numero == client.Id);          
+            var ChambreOccupeEnLibre = chambres.FirstOrDefault(chambres => chambres.Numero == client.Id);         
+            if(ChambreOccupeEnLibre == null)
+            {
+                Console.WriteLine($"Aucune réservation {client.FirstName} {client.LastName}");
+                return;
+            }
             ChambreOccupeEnLibre.EChambre = EChambre.Libre;
             var annulerReservation = reservations.FirstOrDefault(reservation => reservation.Client.Id == client.Id);
-            reservations.RemoveAt(annulerReservation.Id);
+            reservations.RemoveAt(client.Id - 1);//Pour récupérer l'index de 0;
             client.Id = 0;
         }
         public override string ToString()

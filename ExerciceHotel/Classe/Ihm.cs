@@ -9,14 +9,17 @@ namespace ExerciceHotel.Classe
 {
     internal class Ihm 
     {
-        EChambre EChambre { get; set; }
         List<Chambre> listeChambres = new List<Chambre>();
         List<Reservation> reservations = new List<Reservation>();
         List<Client> clients = new List<Client>();
+        Client client;
         public void IHM()
         {
-          
-            Hotel hotel = new Hotel();
+            Console.Write("Quel est le nom de l'Hotel ?");
+            string nameHotel = Console.ReadLine(); 
+            Console.WriteLine($"{nameHotel} créé avec succès !");
+            Hotel hotel = new Hotel(nameHotel);
+            AfficherMenuPrincipal();
             // ======= Initilisation des chambres d'hotel =======//
             Chambre chambreA = new Chambre(1, EChambre.Libre, 2, 45);
             Chambre chambreB = new Chambre(2, EChambre.Libre, 3, 45);
@@ -37,20 +40,8 @@ namespace ExerciceHotel.Classe
             listeChambres.Add(chambreH);
             listeChambres.Add(chambreI);
             //==========================================================//
-            Client clientA = new Client("Schoemaecker","Grégory","0606060606");          
-            clients.Add(clientA);
-            clientA.FaireUneReservation(clientA,listeChambres,reservations);            
-            Client clientB = new Client( "Schoemaecker", "Aurélie", "0606060606");
-            clients.Add(clientB);
-            clientB.FaireUneReservation(clientB,listeChambres,reservations);
-            clientB.FaireUneReservation(clientB, listeChambres, reservations);
-            clientB.FaireUneReservation(clientB, listeChambres, reservations);
-            clientB.FaireUneReservation(clientB, listeChambres, reservations);
-            clientB.AnnulerUneReservation(clientB,listeChambres,reservations);
-            AfficherLalisteDesClients();
-            AfficherLalisteDesReservationsDesClient();
-            AfficherLalisteDesReservationsDuClient(clientB);
-            AfficherLalisteDesReservationsDuClient(clientA);
+
+            ChoisirNumeroDuMenu();
         }
         public void AfficherLalisteDesClients()
         {
@@ -77,6 +68,75 @@ namespace ExerciceHotel.Classe
             {
                 Console.WriteLine(item);
             }
+        }
+        public void AfficherMenuPrincipal()
+        {
+            Console.WriteLine("=== Menu Principal ===\n");
+            Console.WriteLine("1. Ajouter un client");
+            Console.WriteLine("2. Afficher la liste des clients");
+            Console.WriteLine("3. Afficher les réservations d'un client");
+            Console.WriteLine("4. Ajouter une réservation");
+            Console.WriteLine("5. Annuler une réservation");
+            Console.WriteLine("6. Afficher la liste des réservations");
+            Console.WriteLine("0. Quitter");
+        }
+        public void ChoisirNumeroDuMenu()
+        {
+            string input = "";
+            do
+            {
+                input = Console.ReadLine();
+                switch (input)
+                {
+                    case "1":
+                        Console.WriteLine("=== Ajout d'un client ===\n");
+                        Console.WriteLine("Quel est le nom du client ? ");
+                        string nom = Console.ReadLine();
+                        Console.WriteLine("Quel est le prénom du client ? ");
+                        string prenom = Console.ReadLine();
+                        Console.WriteLine("Quel est le numéro du client ? ");
+                        string tel = Console.ReadLine();
+                        client = new Client(nom, prenom, tel);
+                        clients.Add(client);
+                        Console.WriteLine($"{client.GetType().Name} ajouté avec succès !");
+                        break;
+                    case "2":
+                        AfficherLalisteDesClients();
+                        break;
+                    case "3":
+                        AfficherLalisteDesReservationsDesClient();
+                        break;
+                    case "4":
+                        if(client == null)
+                        {
+                            Console.WriteLine("Pour réserver, il faut s'inscrire !");
+                            break;
+                        }
+                        client.FaireUneReservation(client,listeChambres,reservations);
+                        Console.WriteLine($" La réservation a été ajouté avec succès !");
+                        break;
+                        case "5":
+                        if (client == null)
+                        {
+                            Console.WriteLine("Pour annuler une réservation, il faut s'inscrire !");
+                            break;
+                        } else if (reservations.FirstOrDefault(reservation => reservation.Id == client.Id) == null)
+                        {
+                            Console.WriteLine($"Aucune réservation du nom de {client.FirstName} {client.LastName}");
+                            break;
+                        }    
+                        client.AnnulerUneReservation(client,listeChambres,reservations);
+                        Console.WriteLine($" La réservation a été annulé avec succès !");
+                        break; 
+                    case "6":
+                        AfficherLalisteDesReservationsDesClient();
+                        break;
+                    case "0":
+                        break;
+                    default:
+                        break;
+                }
+            } while (input != "0");           
         }
 
     }
