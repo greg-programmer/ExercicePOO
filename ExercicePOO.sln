@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exercice10", "Exercice10\Ex
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExerciceScientifique", "ExerciceScientifique\ExerciceScientifique.csproj", "{36408DD2-41AA-4236-94DB-6631144CB62D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExerciceHotel", "ExerciceHotel\ExerciceHotel.csproj", "{9C0922BA-90B1-4D30-B859-1DAEA8724CA7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExerciceHotel", "ExerciceHotel\ExerciceHotel.csproj", "{9C0922BA-90B1-4D30-B859-1DAEA8724CA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExerciceCaisseEnregistreuse", "ExerciceCaisseEnregistreuse\ExerciceCaisseEnregistreuse.csproj", "{AF3F8A02-95BC-42F0-9545-05B850100D2E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{9C0922BA-90B1-4D30-B859-1DAEA8724CA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C0922BA-90B1-4D30-B859-1DAEA8724CA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C0922BA-90B1-4D30-B859-1DAEA8724CA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF3F8A02-95BC-42F0-9545-05B850100D2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF3F8A02-95BC-42F0-9545-05B850100D2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF3F8A02-95BC-42F0-9545-05B850100D2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF3F8A02-95BC-42F0-9545-05B850100D2E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
