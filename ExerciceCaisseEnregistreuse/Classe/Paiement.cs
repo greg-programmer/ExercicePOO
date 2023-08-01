@@ -8,13 +8,20 @@ namespace ExerciceCaisseEnregistreuse.Classe
 {
     internal class Paiement
     {
-        public int IdentifiantDeReference { get; set; }
-
+        public int IdentifiantDeReference { get; set; } = 112300;
+        public DateTime DateTime { get; set; }
         public Paiement(int identifiantDeReference)
         {
             IdentifiantDeReference = identifiantDeReference;
         }
 
-        public virtual void Payer() { }
+        public virtual void Payer(Vente vente) 
+        {
+        
+        }
+        public override string ToString()
+        {
+            return $"La commande N° {IdentifiantDeReference} vient d'être validé";
+        }
     } 
 }

@@ -11,9 +11,10 @@ namespace ExerciceCaisseEnregistreuse.Classe
         public PaiementCB(int identifiantDeReference) : base(identifiantDeReference)
         {
         }
-        public override void Payer()
+        public override void Payer(Vente vente)
         {
-            base.Payer();
+            vente.TotalDesArticles();
+            Console.WriteLine($"Montant par carte effectué le {DateTime} d'un montant de {vente.TotalDesArticles()}");
         }
     }
 }

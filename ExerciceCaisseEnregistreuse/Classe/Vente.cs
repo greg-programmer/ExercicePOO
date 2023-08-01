@@ -21,12 +21,23 @@ namespace ExerciceCaisseEnregistreuse.Classe
         }
         public void AfficherLesVentes()
         {
-
+            double sum = 0;
             Console.WriteLine(" === Articles dans le panier === ");
             foreach (var item in Panier)
             {
-                Console.WriteLine($"Quantité : {item.Quantite} | nom de l'article  {item.Nom} | prix unitaire : {item.Prix} Euros | prix total : {item.Quantite* item.Prix} Euros");     
+                Console.WriteLine($"Quantité : {item.QuantiteProduitAvantValidationDuPanier} | nom de l'article  {item.Nom} | prix unitaire : {item.Prix} Euros | prix total de l'article : {item.QuantiteProduitAvantValidationDuPanier* item.Prix} £uros");
+                sum += (item.QuantiteProduitAvantValidationDuPanier * item.Prix);
             }
+            Console.WriteLine($"Le prix total des articles est de : {sum} £uros");
+        }
+        public double TotalDesArticles()
+        {
+            double sum = 0;
+            foreach (var item in Panier)
+            {
+              sum += (item.QuantiteProduitAvantValidationDuPanier * item.Prix);
+            }
+            return sum;
         }
       
     }

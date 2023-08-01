@@ -12,7 +12,7 @@ namespace ExerciceCaisseEnregistreuse.Classe
         public string Nom { get; set; }
         public double Prix { get; set; }
         public int Stock { get; set; }
-        public int Quantite { get; set; } = 0;
+        public int QuantiteProduitAvantValidationDuPanier { get; set; } = 0 ;//Je ne sais pas si sémantiquement c'est correct
 
         public Produit(string nom, double prix, int stock)
         {

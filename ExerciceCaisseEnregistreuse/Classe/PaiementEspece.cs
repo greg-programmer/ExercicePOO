@@ -11,9 +11,11 @@ namespace ExerciceCaisseEnregistreuse.Classe
         public PaiementEspece(int identifiantDeReference) : base(identifiantDeReference)
         {
         }
-        public override void Payer()
+        public override void Payer(Vente vente)
         {
-            base.Payer();
+            vente.TotalDesArticles();
+            Console.WriteLine($"Montant en espèce payer le {DateTime} d'un montant de {vente.TotalDesArticles()}");
         }
+
     }
 }
