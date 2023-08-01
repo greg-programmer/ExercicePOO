@@ -22,7 +22,7 @@ namespace ExerciceCaisseEnregistreuse.Classe
             Produits.Add("01POM",new Produit("Pomme", 2.50, 8));
             Produits.Add("01BAN", new Produit("Banane", 2.50, 5));
             Produits.Add("01RAS", new Produit("Raisin", 2.50, 8));
-            Produits.Add("01P0I", new Produit("Poire", 2.50, 10));
+            Produits.Add("01POI", new Produit("Poire", 2.50, 10));
             Produits.Add("01PAS", new Produit("Pasteque", 2.50, 10));
             Produits.Add("01SAL", new Produit("Salade", 2.50, 12));
             Produits.Add("01MEL", new Produit("Melon", 2.50, 11));
@@ -44,7 +44,8 @@ namespace ExerciceCaisseEnregistreuse.Classe
         }
         public void AfficherMenuPrincipal()
         {
-            string input = "";                         
+            string input = "";
+            Vente vente = new Vente();
             do
             {
                 Console.WriteLine(" === Menu Principal ===\n");
@@ -81,6 +82,8 @@ namespace ExerciceCaisseEnregistreuse.Classe
                             if(premierProduit.Value.Stock - nombreDuStock >= 0)
                             {
                                 premierProduit.Value.Stock = premierProduit.Value.Stock - nombreDuStock;
+                                premierProduit.Value.Quantite = nombreDuStock;
+                                vente.AjouterUnproduitAuPanier(premierProduit);                        
                                 Console.WriteLine("Votre article a été ajouté avec succès!");
                                 Console.WriteLine("1.Continuer la vente");
                                 Console.WriteLine("2.Valider la vente");
@@ -102,6 +105,8 @@ namespace ExerciceCaisseEnregistreuse.Classe
                                     break;
                                 case "2":
                                     Evente = Evente.Validée;
+                                    vente.AfficherLesVentes();
+                                    Console.ReadLine ();
                                     //Mise en place d'une méthode pour valider le paiement//
                                     break;
                                     case "3":

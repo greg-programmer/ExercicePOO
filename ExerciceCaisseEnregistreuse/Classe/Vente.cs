@@ -10,12 +10,24 @@ namespace ExerciceCaisseEnregistreuse.Classe
     internal class Vente
     {
         public int Id { get; set; }
-        List<Produit> Panier { get; set;}  
-        Evente Evente { get; set; } 
-        public void AjouterUnproduitAuPanier(Produit produit)
+        public List<Produit> Panier { get; set;} = new List<Produit>();     
+        Evente Evente { get; set; }
+         
+
+        public void AjouterUnproduitAuPanier(KeyValuePair<string, Produit> premierProduit)
         {
             Evente = Evente.EnCours;
-            Panier.Add(produit);
+            Panier.Add(premierProduit.Value);
         }
+        public void AfficherLesVentes()
+        {
+
+            Console.WriteLine(" === Articles dans le panier === ");
+            foreach (var item in Panier)
+            {
+                Console.WriteLine($"Quantité : {item.Quantite} | nom de l'article  {item.Nom} | prix unitaire : {item.Prix} Euros | prix total : {item.Quantite* item.Prix} Euros");     
+            }
+        }
+      
     }
 }

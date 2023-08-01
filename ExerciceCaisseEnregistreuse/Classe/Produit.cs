@@ -12,6 +12,7 @@ namespace ExerciceCaisseEnregistreuse.Classe
         public string Nom { get; set; }
         public double Prix { get; set; }
         public int Stock { get; set; }
+        public int Quantite { get; set; } = 0;
 
         public Produit(string nom, double prix, int stock)
         {
