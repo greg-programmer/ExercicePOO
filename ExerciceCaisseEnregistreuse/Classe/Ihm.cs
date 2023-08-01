@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading.Tasks.Sources;
 
 namespace ExerciceCaisseEnregistreuse.Classe
 {
@@ -43,14 +44,14 @@ namespace ExerciceCaisseEnregistreuse.Classe
         }
         public void AfficherMenuPrincipal()
         {
-            string input = "";
-            Console.WriteLine(" === Menu Principal ===\n");
-            Console.WriteLine("1. Voir les produits");
-            Console.WriteLine("2. Ajouter un produit dans la caisse");
-            Console.WriteLine("3. Faire une vente");
-            Console.WriteLine("0. Quitter");                 
+            string input = "";                         
             do
             {
+                Console.WriteLine(" === Menu Principal ===\n");
+                Console.WriteLine("1. Voir les produits");
+                Console.WriteLine("2. Ajouter un produit dans la caisse");
+                Console.WriteLine("3. Faire une vente");
+                Console.WriteLine("0. Quitter");
                 Console.Write("Votre choix : ");
                 input = Console.ReadLine();
                 switch (input)
@@ -62,6 +63,55 @@ namespace ExerciceCaisseEnregistreuse.Classe
                         AjouterUnProduitDansLaCaisse();
                         break;
                     case "3":
+                        AffichertousLesProduits();
+                        do
+                        {
+                            string choix = "";
+                            Console.Clear();
+                            Console.WriteLine(" === Stock Disponible === ");
+                            AffichertousLesProduits();
+                            Console.WriteLine(" === Ajouter un article dans le panier === \n");
+                            Console.Write("Quel article souhaitez vous ajouter à votre panier (Entrez le code de l'article) ? ");
+                            //Faire Une méthode pour mettre à jour le stock//                    ;
+                            string nomDuProduit = Console.ReadLine().ToUpper();
+                          //Gérer une condition en cas d'erreur de saisie
+                            var premierProduit = Produits.FirstOrDefault(produit => produit.Key.ToUpper() == nomDuProduit);
+                            Console.Write($"Combien d'article {premierProduit.Value.Nom} souhaitez vous ajouter dans le panier ?");
+                            int.TryParse(Console.ReadLine().ToUpper(), out int nombreDuStock);
+                            if(premierProduit.Value.Stock - nombreDuStock >= 0)
+                            {
+                                premierProduit.Value.Stock = premierProduit.Value.Stock - nombreDuStock;
+                                Console.WriteLine("Votre article a été ajouté avec succès!");
+                                Console.WriteLine("1.Continuer la vente");
+                                Console.WriteLine("2.Valider la vente");
+                                Console.WriteLine("3.Annuler la vente");
+                                Console.Write("Faites votre choix : ");
+                                choix = Console.ReadLine();
+                            }
+                            else
+                            {
+                               Console.WriteLine("La quantité n'est plus en stock !");
+                                Console.WriteLine("Appuyez sur une touche pour revenir à la vente...");
+                                Console.ReadLine();
+                            }                        
+                            
+                            switch (choix)
+                            {
+                                case "1":
+                                    Evente = Evente.EnCours;
+                                    break;
+                                case "2":
+                                    Evente = Evente.Validée;
+                                    //Mise en place d'une méthode pour valider le paiement//
+                                    break;
+                                    case "3":
+                                    Evente = Evente.Annulée;
+                                    //Mise en place d'une méthode pour annuler le paiement//
+                                    break;
+                                    default:
+                                    break;
+                            }
+                        } while (Evente == Evente.EnCours);                         
                         break;
                     case "0":
                         break;
@@ -70,9 +120,9 @@ namespace ExerciceCaisseEnregistreuse.Classe
                 }
             } while(input != "0");           
         }
-        public void RechercherUnProduit(string nomDuProduit)
+        public void RechercherUnProduit()
         {
-            nomDuProduit = nomDuProduit.ToLower();
+            string nomDuProduit = Console.ReadLine().ToLower();
             foreach (var item in Produits)
             {
                 if (item.Key.ToLower().Contains(nomDuProduit))
@@ -111,8 +161,8 @@ namespace ExerciceCaisseEnregistreuse.Classe
                 var premierProduit = ProduitsEnStock.FirstOrDefault(produit => produit.Key.ToUpper() == nomDuProduit);
                 if (premierProduit.Value != null)
                 {
-                    Console.Write($"Combien d'article {premierProduit.Value.Nom} souhaitez vous ajouter dans le panier ?");                    
-                    int.TryParse(Console.ReadLine().ToUpper(),out int nombreDuStock);
+                    Console.Write($"Combien d'article {premierProduit.Value.Nom} souhaitez vous ajouter dans le panier ?");
+                    int.TryParse(Console.ReadLine().ToUpper(), out int nombreDuStock);
                     premierProduit.Value.Stock = premierProduit.Value.Stock - nombreDuStock;
                     Console.WriteLine("1.Valider la vente");
                     Console.WriteLine("2.Ajouter un article");
@@ -125,9 +175,17 @@ namespace ExerciceCaisseEnregistreuse.Classe
                     Console.WriteLine("Le code article n'existe pas !");
                     Console.Write("Quel article souhaitez vous ajouter à votre panier (Entrez le code de l'article) ? ");
                     nomDuProduit = Console.ReadLine().ToUpper();
-                }            
-              
-            } while (nomDuProduit != "0");           
+                }
+
+            } while (nomDuProduit != "0" || Evente == Evente.Validée);       
+            if(Evente == Evente.Validée)
+            {
+
+            }
+            else
+            {
+                return;
+            }
         }        
     }    
 }

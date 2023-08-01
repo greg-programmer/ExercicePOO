@@ -11,6 +11,11 @@ namespace ExerciceCaisseEnregistreuse.Classe
     {
         public int Id { get; set; }
         List<Produit> Panier { get; set;}  
-        Evente Evente { get; set; }      
+        Evente Evente { get; set; } 
+        public void AjouterUnproduitAuPanier(Produit produit)
+        {
+            Evente = Evente.EnCours;
+            Panier.Add(produit);
+        }
     }
 }
