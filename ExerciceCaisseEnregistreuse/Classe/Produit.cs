@@ -20,6 +20,7 @@ namespace ExerciceCaisseEnregistreuse.Classe
             Prix = prix;
             Stock = stock;
         }
+        
         public override string ToString()
         {
             return $" || Nom de l'article : {Nom} || Prix unitaire : {Prix} Euros || Quantité Disponible : {Stock} ||";

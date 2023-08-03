@@ -17,7 +17,7 @@ namespace ExerciceCaisseEnregistreuse.Classe
 
         public virtual void Payer(Vente vente) 
         {
-        
+           
         }
         public override string ToString()
         {

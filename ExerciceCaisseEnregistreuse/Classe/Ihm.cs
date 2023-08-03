@@ -13,7 +13,9 @@ namespace ExerciceCaisseEnregistreuse.Classe
     {
         Evente Evente { get; set; }
         private Dictionary<string, Produit> Produits = new Dictionary<string, Produit>();
-        private Dictionary<string, Vente> Ventes = new Dictionary<string, Vente>();      
+        private Dictionary<string, Vente> Ventes = new Dictionary<string, Vente>();    
+        private List<int> QuantiteAvantValidation = new List<int>();
+        private Vente Vente { get; set; } = new Vente();    
         public void IHM()        {
             
             //Initialisation du magasin
@@ -30,17 +32,6 @@ namespace ExerciceCaisseEnregistreuse.Classe
             Produits.Add("01CER", new Produit("Cerise", 2.50, 9));
             //Création d'un produit//
             AfficherMenuPrincipal();
-
-            //Transaction validé//
-            if (Evente == Evente.Validée)
-            {
-
-            }
-            //Transaction annulé//
-            else if(Evente == Evente.Annulée)
-            {
-
-            }
         }
         public void AfficherMenuPrincipal()
         {
@@ -78,12 +69,22 @@ namespace ExerciceCaisseEnregistreuse.Classe
                           //Gérer une condition en cas d'erreur de saisie
                             var premierProduit = Produits.FirstOrDefault(produit => produit.Key.ToUpper() == nomDuProduit);
                             Console.Write($"Combien d'article {premierProduit.Value.Nom} souhaitez vous ajouter dans le panier ?");
-                            int.TryParse(Console.ReadLine().ToUpper(), out int nombreDuStock);
-                            if(premierProduit.Value.Stock - nombreDuStock >= 0)
+                            int.TryParse(Console.ReadLine().ToUpper(), out int quantiteChoisie);
+                            if(premierProduit.Value.Stock - quantiteChoisie >= 0)
                             {
-                                premierProduit.Value.Stock = premierProduit.Value.Stock - nombreDuStock;
-                                premierProduit.Value.QuantiteProduitAvantValidationDuPanier = nombreDuStock;
-                                vente.AjouterUnproduitAuPanier(premierProduit);                        
+                               for(int i = 0;i < Vente.Panier.Count; i++)
+                                {
+                                    if (Vente.Panier[i].Nom == premierProduit.Value.Nom)
+                                    {
+                                        QuantiteAvantValidation[i] = QuantiteAvantValidation[i] + quantiteChoisie;
+                                        break;
+                                    }
+                                }                                    
+                                if(Vente.Panier.FirstOrDefault(vente => vente.Nom == premierProduit.Value.Nom) == null)
+                                {
+                                    Vente.Panier.Add(premierProduit.Value);
+                                    QuantiteAvantValidation.Add(quantiteChoisie);
+                                }                              
                                 Console.WriteLine("Votre article a été ajouté avec succès!");
                                 Console.WriteLine("1.Continuer la vente");
                                 Console.WriteLine("2.Valider la vente");
@@ -112,6 +113,10 @@ namespace ExerciceCaisseEnregistreuse.Classe
                                     string choixPaiement = Console.ReadLine();
                                     if(choixPaiement == "1")
                                     {
+                                        for(var i = 0; i < Vente.Panier.Count; i++)
+                                        {
+                                            Vente.Panier[i].Stock = Vente.Panier[i].Stock - QuantiteAvantValidation[i];
+                                        }                                     
                                         PaiementCB paiementCB = new PaiementCB(1222223);
                                         paiementCB.Payer(vente);
                                         Console.ReadLine();
