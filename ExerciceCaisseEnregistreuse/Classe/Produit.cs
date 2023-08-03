@@ -11,8 +11,7 @@ namespace ExerciceCaisseEnregistreuse.Classe
         public static int Id { get; set; } = +1;
         public string Nom { get; set; }
         public double Prix { get; set; }
-        public int Stock { get; set; }
-        public int QuantiteProduitAvantValidationDuPanier { get; set; } = 0 ;//Je ne sais pas si sémantiquement c'est correct
+        public int Stock { get; set; }  
 
         public Produit(string nom, double prix, int stock)
         {

@@ -106,24 +106,37 @@ namespace ExerciceCaisseEnregistreuse.Classe
                                     break;
                                 case "2":
                                     Evente = Evente.Validée;
-                                    vente.AfficherLesVentes();
                                     Console.WriteLine("Choisissez votre moyen de paiement : ");
                                     Console.WriteLine("1.Carte");
                                     Console.WriteLine("2.Espèce");
                                     string choixPaiement = Console.ReadLine();
                                     if(choixPaiement == "1")
                                     {
-                                        for(var i = 0; i < Vente.Panier.Count; i++)
+                                        double totalUnitaire = 0;
+                                        double totalPaiement = 0;
+                                        for (var i = 0; i < Vente.Panier.Count; i++)
                                         {
                                             Vente.Panier[i].Stock = Vente.Panier[i].Stock - QuantiteAvantValidation[i];
-                                        }                                     
-                                        PaiementCB paiementCB = new PaiementCB(1222223);
-                                        paiementCB.Payer(vente);
+                                            totalUnitaire = QuantiteAvantValidation[i] * Vente.Panier[i].Prix;
+                                            totalPaiement += totalUnitaire;
+                                        }                                      
+                                        PaiementCB paiementCB = new PaiementCB(1222223);                                        
+                                        paiementCB.Payer(vente,totalPaiement);
+                                        Console.WriteLine(paiementCB);
                                         Console.ReadLine();
                                     }else if(choixPaiement == "2")
                                     {
+                                        double totalUnitaire = 0;
+                                        double totalPaiement = 0;
+                                        for (var i = 0; i < Vente.Panier.Count; i++)
+                                        {
+                                            Vente.Panier[i].Stock = Vente.Panier[i].Stock - QuantiteAvantValidation[i];
+                                            totalUnitaire = QuantiteAvantValidation[i] * Vente.Panier[i].Prix;
+                                            totalPaiement += totalUnitaire;
+                                        }
                                         PaiementEspece paiementEspece = new PaiementEspece(1222224);
-                                        paiementEspece.Payer(vente);
+                                        paiementEspece.Payer(vente,totalPaiement);
+                                        Console.WriteLine(paiementEspece);
                                         Console.ReadLine();
                                     }
                                  

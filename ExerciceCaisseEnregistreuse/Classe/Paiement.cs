@@ -15,7 +15,7 @@ namespace ExerciceCaisseEnregistreuse.Classe
             IdentifiantDeReference = identifiantDeReference;
         }
 
-        public virtual void Payer(Vente vente) 
+        public virtual void Payer(Vente vente,double totalPaiement) 
         {
            
         }
