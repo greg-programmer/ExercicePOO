@@ -112,28 +112,14 @@ namespace ExerciceCaisseEnregistreuse.Classe
                                     string choixPaiement = Console.ReadLine();
                                     if(choixPaiement == "1")
                                     {
-                                        double totalUnitaire = 0;
-                                        double totalPaiement = 0;
-                                        for (var i = 0; i < Vente.Panier.Count; i++)
-                                        {
-                                            Vente.Panier[i].Stock = Vente.Panier[i].Stock - QuantiteAvantValidation[i];
-                                            totalUnitaire = QuantiteAvantValidation[i] * Vente.Panier[i].Prix;
-                                            totalPaiement += totalUnitaire;
-                                        }                                      
+                                       double totalPaiement = MiseAjourDuStockEtRecuperationDuPrixTotalDesVentes(Vente);                                                                    
                                         PaiementCB paiementCB = new PaiementCB(1222223);                                        
                                         paiementCB.Payer(vente,totalPaiement);
                                         Console.WriteLine(paiementCB);
                                         Console.ReadLine();
                                     }else if(choixPaiement == "2")
                                     {
-                                        double totalUnitaire = 0;
-                                        double totalPaiement = 0;
-                                        for (var i = 0; i < Vente.Panier.Count; i++)
-                                        {
-                                            Vente.Panier[i].Stock = Vente.Panier[i].Stock - QuantiteAvantValidation[i];
-                                            totalUnitaire = QuantiteAvantValidation[i] * Vente.Panier[i].Prix;
-                                            totalPaiement += totalUnitaire;
-                                        }
+                                        double totalPaiement = MiseAjourDuStockEtRecuperationDuPrixTotalDesVentes(Vente);                              
                                         PaiementEspece paiementEspece = new PaiementEspece(1222224);
                                         paiementEspece.Payer(vente,totalPaiement);
                                         Console.WriteLine(paiementEspece);
@@ -169,6 +155,19 @@ namespace ExerciceCaisseEnregistreuse.Classe
                 }
             }          
         }
+        #region ListesDesFonctions
+        public double MiseAjourDuStockEtRecuperationDuPrixTotalDesVentes(Vente vente)
+        {
+            double totalUnitaire = 0;
+            double totalPaiement = 0;
+            for (var i = 0; i < vente.Panier.Count; i++)
+            {
+                Vente.Panier[i].Stock = Vente.Panier[i].Stock - QuantiteAvantValidation[i];
+                totalUnitaire = QuantiteAvantValidation[i] * Vente.Panier[i].Prix;
+                totalPaiement += totalUnitaire;
+            }
+            return totalPaiement;
+        }
         public void AffichertousLesProduits()
         {
             foreach (var ProduitsEnStock in Produits)
@@ -188,42 +187,7 @@ namespace ExerciceCaisseEnregistreuse.Classe
             string codeArticle = produit.Nom.Substring(0,3).ToUpper();
             Produits.Add($"01{codeArticle}",produit);
 
-        }
-        public void AjouterUnProduitDansLePanier(Dictionary<string, Produit> ProduitsEnStock)
-        {
-            Console.WriteLine(" === Ajouter un article dans le panier === \n");
-            Console.Write("Quel article souhaitez vous ajouter à votre panier (Entrez le code de l'article) ? ");
-            string nomDuProduit = Console.ReadLine().ToUpper();
-            do
-            {
-                var premierProduit = ProduitsEnStock.FirstOrDefault(produit => produit.Key.ToUpper() == nomDuProduit);
-                if (premierProduit.Value != null)
-                {
-                    Console.Write($"Combien d'article {premierProduit.Value.Nom} souhaitez vous ajouter dans le panier ?");
-                    int.TryParse(Console.ReadLine().ToUpper(), out int nombreDuStock);
-                    premierProduit.Value.Stock = premierProduit.Value.Stock - nombreDuStock;
-                    Console.WriteLine("1.Valider la vente");
-                    Console.WriteLine("2.Ajouter un article");
-                    Console.WriteLine("Appuyez sur une autre touche pour annuler la vente...");
-                    nomDuProduit = Console.ReadLine();
-                    //Creer la fonction pour changer le stock //
-                }
-                else
-                {
-                    Console.WriteLine("Le code article n'existe pas !");
-                    Console.Write("Quel article souhaitez vous ajouter à votre panier (Entrez le code de l'article) ? ");
-                    nomDuProduit = Console.ReadLine().ToUpper();
-                }
-
-            } while (nomDuProduit != "0" || Evente == Evente.Validée);       
-            if(Evente == Evente.Validée)
-            {
-
-            }
-            else
-            {
-                return;
-            }
-        }        
-    }    
+        }     
+    }
+    #endregion
 }
