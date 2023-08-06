@@ -14,7 +14,7 @@ namespace ExerciceCaisseEnregistreuse.Classe
         Evente Evente { get; set; }
         private Dictionary<string, Produit> Produits = new Dictionary<string, Produit>();
         private Dictionary<string, Vente> Ventes = new Dictionary<string, Vente>();    
-        private List<int> QuantiteAvantValidation = new List<int>();
+        private List<int> QuantiteAvantValidation = new List<int>();//Cette liste me permet de stocker provivisoirement les quantités des produits du panier
         private Vente Vente { get; set; } = new Vente();    
         public void IHM()        {
             
@@ -23,13 +23,17 @@ namespace ExerciceCaisseEnregistreuse.Classe
             Caisse caisse = new Caisse(Produits,Ventes);
             Produits.Add("01POM",new Produit("Pomme", 2.50, 8));
             Produits.Add("01BAN", new Produit("Banane", 2.50, 5));
-            Produits.Add("01RAS", new Produit("Raisin", 2.50, 8));
+            Produits.Add("01RAS", new Produit("Raisin", 2.50, 8));           
             Produits.Add("01POI", new Produit("Poire", 2.50, 10));
             Produits.Add("01PAS", new Produit("Pasteque", 2.50, 10));
             Produits.Add("01SAL", new Produit("Salade", 2.50, 12));
             Produits.Add("01MEL", new Produit("Melon", 2.50, 11));
             Produits.Add("01FRA", new Produit("Fraise", 2.50, 3));
             Produits.Add("01CER", new Produit("Cerise", 2.50, 9));
+            foreach (var item in Produits)
+            {
+                Console.WriteLine(item.Value.Id);
+            }
             //Création d'un produit//
             AfficherMenuPrincipal();
         }
@@ -49,10 +53,10 @@ namespace ExerciceCaisseEnregistreuse.Classe
                 switch (input)
                 {
                     case "1":
-                        AffichertousLesProduits();
+                        AffichertousLesProduits();//Cette méthode affiche tous les produis en stock
                         break;
                     case "2":
-                        AjouterUnProduitDansLaCaisse();
+                        AjouterUnProduitDansLaCaisse();//Cette méthode permet d'ajouter un produit dans le magasin
                         break;
                     case "3":
                         AffichertousLesProduits();
@@ -64,9 +68,7 @@ namespace ExerciceCaisseEnregistreuse.Classe
                             AffichertousLesProduits();
                             Console.WriteLine(" === Ajouter un article dans le panier === \n");
                             Console.Write("Quel article souhaitez vous ajouter à votre panier (Entrez le code de l'article) ? ");
-                            //Faire Une méthode pour mettre à jour le stock//                    ;
-                            string nomDuProduit = Console.ReadLine().ToUpper();
-                          //Gérer une condition en cas d'erreur de saisie
+                            string nomDuProduit = Console.ReadLine().ToUpper();                       
                             var premierProduit = Produits.FirstOrDefault(produit => produit.Key.ToUpper() == nomDuProduit);
                             Console.Write($"Combien d'article {premierProduit.Value.Nom} souhaitez vous ajouter dans le panier ?");
                             int.TryParse(Console.ReadLine().ToUpper(), out int quantiteChoisie);
@@ -115,22 +117,27 @@ namespace ExerciceCaisseEnregistreuse.Classe
                                        double totalPaiement = MiseAjourDuStockEtRecuperationDuPrixTotalDesVentes(Vente);                                                                    
                                         PaiementCB paiementCB = new PaiementCB(1222223);                                        
                                         paiementCB.Payer(vente,totalPaiement);
-                                        Console.WriteLine(paiementCB);
+                                        Console.WriteLine(paiementCB);                                      
+                                        Vente.Panier.Clear();
+                                        QuantiteAvantValidation.Clear();
                                         Console.ReadLine();
                                     }else if(choixPaiement == "2")
                                     {
-                                        double totalPaiement = MiseAjourDuStockEtRecuperationDuPrixTotalDesVentes(Vente);                              
+                                        //Après validation du paiement//
+                                        double totalPaiement = MiseAjourDuStockEtRecuperationDuPrixTotalDesVentes(Vente); //Cette méthode met à jour le stock et retourne le prix total des ventes                             
                                         PaiementEspece paiementEspece = new PaiementEspece(1222224);
-                                        paiementEspece.Payer(vente,totalPaiement);
-                                        Console.WriteLine(paiementEspece);
+                                        paiementEspece.Payer(vente,totalPaiement);//Cette méthode permet d'afficher le type de paiement , la date et le total d'une vente.
+                                        Console.WriteLine(paiementEspece);//Cette méhode Affiche le message de validation de la commande ainsi que son numéro de référence.
+                                        Vente.Panier.Clear();
+                                        QuantiteAvantValidation.Clear();
                                         Console.ReadLine();
-                                    }
-                                 
-                                    //Mise en place d'une méthode pour valider le paiement//
+                                    }                           
                                     break;
                                     case "3":
                                     Evente = Evente.Annulée;
-                                    //Mise en place d'une méthode pour annuler le paiement//
+                                    Vente.Panier.Clear();//Si la commande est annulé on vide le panier//
+                                    QuantiteAvantValidation.Clear();//La liste des quantités est effacé
+                                    
                                     break;
                                     default:
                                     break;
@@ -143,18 +150,7 @@ namespace ExerciceCaisseEnregistreuse.Classe
                         break;
                 }
             } while(input != "0");           
-        }
-        public void RechercherUnProduit()
-        {
-            string nomDuProduit = Console.ReadLine().ToLower();
-            foreach (var item in Produits)
-            {
-                if (item.Key.ToLower().Contains(nomDuProduit))
-                {
-                    Console.WriteLine($"Le nom : {item.Value.Nom} ,Le prix : {item.Value.Prix} Le stock : {item.Value.Stock}");
-                }
-            }          
-        }
+        }  
         #region ListesDesFonctions
         public double MiseAjourDuStockEtRecuperationDuPrixTotalDesVentes(Vente vente)
         {

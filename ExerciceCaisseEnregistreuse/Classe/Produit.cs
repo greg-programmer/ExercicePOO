@@ -8,7 +8,8 @@ namespace ExerciceCaisseEnregistreuse.Classe
 {
     internal class Produit
     {
-        public static int Id { get; set; } = +1;
+        private static int AutoIncrementId { get; set; }   
+        public int Id { get;}
         public string Nom { get; set; }
         public double Prix { get; set; }
         public int Stock { get; set; }  
@@ -18,6 +19,8 @@ namespace ExerciceCaisseEnregistreuse.Classe
             Nom = nom;
             Prix = prix;
             Stock = stock;
+            AutoIncrementId = AutoIncrementId +1;
+            Id = AutoIncrementId;
         }
         
         public override string ToString()
