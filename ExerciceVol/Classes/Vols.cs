@@ -31,7 +31,7 @@ namespace ExerciceVol.Classes
                     strings.Add(item.Arrived);
                 }
             }
-           return "La liste des destinations à partir de" + " " + villeDepart +" est : {'" + String.Join("', '",strings) + "'}";//Gérer l'affichage des villes d'arrivé           
+           return "La liste des destinations à partir de" + " " + villeDepart +" est : {'" + String.Join("', '",strings) + "'}";          
         }
         public void Affiche()
         {
@@ -40,12 +40,9 @@ namespace ExerciceVol.Classes
                 Console.WriteLine(volDirect);
             }
         }
-
-        //Écrire une méthode Appartient qui vérifie si une ville appartient au plan du vol que ce soit comme ville d’arrivée ou de départ
         public void Appartient()
         {
-            bool appartient = false;
-           var a = new List<VolDirect>();
+            var a = new List<VolDirect>();
             foreach (var item in VolNamesArrived)
             {
                a = Vol.Where(volDirects => volDirects.Start == item || volDirects.Arrived == item).ToList();
