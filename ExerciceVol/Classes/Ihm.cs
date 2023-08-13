@@ -14,6 +14,7 @@ namespace ExerciceVol.Classes
             vols.Affiche();
             Console.WriteLine();
             vols.Appartient();
+            Console.WriteLine(vols.Liste_Successeurs("Paris"));
         }     
     }
 }

@@ -9,7 +9,7 @@ namespace ExerciceVol.Interfaces
 {
     internal interface IVol
     {
-        List<string> Liste_Successeurs(string villeDepart); //Retourne une liste contenant les villes d'arrivées
+        string Liste_Successeurs(string villeDepart); //Retourne une liste contenant les villes d'arrivées
         void Appartient(); //Verifie si une ville appartient au plan du vol que ce soit comme ville d'arrivé ou de départ
         void Affiche(); //Affiche tous les vols directs
     }

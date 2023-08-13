@@ -21,13 +21,17 @@ namespace ExerciceVol.Classes
         };
         List<string> VolNamesArrived { get; set; } = new List<string>() { "Paris","Barcelone","Rome","Venise","Toulouse","Lille","Madrid"};
 
-        public List<string> Liste_Successeurs(string villeDepart)
+        public string Liste_Successeurs(string villeDepart)
         {
-            foreach (var volDirect in Vol)
+            List<String> strings = new List<String>();
+            foreach (var item in Vol)
             {
-                VolNamesArrived.Add(volDirect.Start);
+                if(item.Start == villeDepart)
+                {
+                    strings.Add(item.Arrived);
+                }
             }
-            return VolNamesArrived;
+           return "La liste des destinations à partir de" + " " + villeDepart +" est : {'" + String.Join("', '",strings) + "'}";//Gérer l'affichage des villes d'arrivé           
         }
         public void Affiche()
         {
