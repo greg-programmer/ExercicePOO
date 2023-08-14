@@ -10,5 +10,15 @@ namespace ExerciceForum.Classes
     {
         public string Sujet { get; set; }   
         public string Descriptif { get; set; }
+
+        public Nouvelle(string sujet, string descriptif)
+        {
+            Sujet = sujet;
+            Descriptif = descriptif;
+        }
+        public override string ToString()
+        {
+            return $"Sujet : {Sujet} Descriptif : {Descriptif}";
+        }
     }
 }

@@ -10,8 +10,8 @@ namespace ExerciceForum.Classes
     {
         public string Nom { get; set; }
         public DateTime DateCreation { get; set; }
-        public new List<Abonne> Abonnes { get; set; } = new List<Abonne>();
-        public new List<Nouvelle> Nouvelles { get; set; } = new List<Nouvelle>();   
+        public static List<Abonne> Abonnes { get; set; } = new List<Abonne>();
+        public static List<Nouvelle> Nouvelles { get; set; } = new List<Nouvelle>();   
         public Moderateur Moderateur { get; set; }
        
        //Rajouter un tableau d'abonnés//
