@@ -23,7 +23,7 @@ namespace ExerciceForum.Classes
             {
                 concatReponse = $"Reponse : {Reponse}";
             }
-            return $"Sujet : {Sujet} Descriptif : {Descriptif}" + concatReponse;
+            return $"Sujet : {Sujet} Descriptif : {Descriptif}" + " " + concatReponse;
         }
     }
 }

@@ -34,7 +34,7 @@ namespace ExerciceForum.Classes
                     Console.Write(" === Menu Principal === \n");                   
                     do
                     {
-                        Console.WriteLine("1. Voir les abonnnés");
+                        Console.WriteLine("1. Voir les abonnés");
                         Console.WriteLine("2. Ajouter un abonné");
                         Console.WriteLine("3. Bannir un abonné");
                         Console.WriteLine("4. Voir les nouvelles");
@@ -66,7 +66,11 @@ namespace ExerciceForum.Classes
                                 Console.ReadKey();
                                 break;
                             case "3":
-                                moderateurA.BannirUnAbonne("Grégory", "Schoemaecker");
+                                Console.Write("Merci de rentrer le nom de l'abonné : ");
+                                string nomAboSup = Console.ReadLine();
+                                Console.Write("Merci de rentrer le prénom de l'abonné : ");
+                                string prenomAboSup = Console.ReadLine();
+                                moderateurA.BannirUnAbonne(nomAboSup, prenomAboSup);
                                 break;
                             case "4":
                                 moderateurA.ConsulterNouvelles();
