@@ -11,5 +11,7 @@ namespace ExerciceForum.Interfaces
     {
         void AjouterUneNouvelle(Nouvelle nouvelle);
         void ConsulterNouvelles();
+        void ConsulterUneNouvelle(string sujetAconsulter);
+        void RepondreAUneNouvelle(string reponse, string Sujet);
     }
 }
