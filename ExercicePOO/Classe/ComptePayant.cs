@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Exercice09.Classes
 {
-    internal class ComptePayant : CompteBanquaire
+    internal class ComptePayant : CompteBancaire
     {
         public ComptePayant(decimal solde) : base(solde) { }
         public decimal AjouterTarifSurComptePayant(ComptePayant comptePayant)

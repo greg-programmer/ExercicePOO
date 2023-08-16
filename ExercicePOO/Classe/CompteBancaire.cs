@@ -2,14 +2,14 @@
 
 namespace Exercice09.Classes
 {
-    internal abstract class CompteBanquaire
+    internal abstract class CompteBancaire
     {
         protected decimal Solde { get; set; }      
-        private List<CompteBanquaire> compteBanquaires { get; set; } = new List<CompteBanquaire>();
+        private List<CompteBancaire> compteBanquaires { get; set; } = new List<CompteBancaire>();
         private static List<string> listeDesOperations { get; set; } = new List<string>() { };
 
   
-        public CompteBanquaire(decimal solde)
+        public CompteBancaire(decimal solde)
         {
            Solde = solde;            
         }
@@ -49,7 +49,7 @@ namespace Exercice09.Classes
                 Console.WriteLine(item);    
             }
         }
-        public bool ControleSolde(CompteBanquaire compteBanquaire)
+        public bool ControleSolde(CompteBancaire compteBanquaire)
         {
             if(compteBanquaire.Solde < 0)
             {

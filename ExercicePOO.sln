@@ -5,7 +5,7 @@ VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExercicePOO", "ExercicePOO\ExercicePOO.csproj", "{708B1FA0-BDA1-43BC-9DF9-2811AEC1AAB6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exercice10", "Exercice10\Exercice10.csproj", "{2C8515FD-2C08-4EF2-B666-07D5FCDE965F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExerciceThermometre", "Exercice10\ExerciceThermometre.csproj", "{2C8515FD-2C08-4EF2-B666-07D5FCDE965F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExerciceScientifique", "ExerciceScientifique\ExerciceScientifique.csproj", "{36408DD2-41AA-4236-94DB-6631144CB62D}"
 EndProject
@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExerciceCaisseEnregistreuse
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExerciceVol", "ExerciceVol\ExerciceVol.csproj", "{1B09EEE3-AAD5-48F2-BE24-C6933276FF49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExerciceForum", "ExerciceForum\ExerciceForum.csproj", "{792CF313-1E0F-49D6-AD3F-C1EEB6C80708}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExerciceForum", "ExerciceForum\ExerciceForum.csproj", "{792CF313-1E0F-49D6-AD3F-C1EEB6C80708}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -13,7 +13,7 @@ namespace Exercice09.Classes
         private string Telephone { get; set; }
       
         private List<Client> listClients = new List<Client> { };
-        private List<CompteBanquaire> listCompteBanquaires = new List<CompteBanquaire>();
+        private List<CompteBancaire> listCompteBanquaires = new List<CompteBancaire>();
         public Client(string nom, string prenom, string telephone)
         {
             Nom = nom;
@@ -52,7 +52,7 @@ namespace Exercice09.Classes
         }  
         public void AfficherLalisteDesComptesBanquaires()
         {
-            foreach (CompteBanquaire compteBanquaire in listCompteBanquaires)
+            foreach (CompteBancaire compteBanquaire in listCompteBanquaires)
             {
                 Console.WriteLine($"{compteBanquaire}\n" +
                 $" Nom : {Nom} \n" +
