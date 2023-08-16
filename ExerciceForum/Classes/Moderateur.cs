@@ -27,7 +27,7 @@ namespace ExerciceForum.Classes
             }
         }
 
-        public void ConsulterNouvelle()
+        public void ConsulterNouvelles()
         {
             foreach (var nouvelle in Forum.Nouvelles)
             {

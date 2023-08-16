@@ -10,7 +10,7 @@ namespace ExerciceForum.Classes
     {
         public string Sujet { get; set; }   
         public string Descriptif { get; set; }
-
+        public string Reponse { get; set; } = "";
         public Nouvelle(string sujet, string descriptif)
         {
             Sujet = sujet;
@@ -18,7 +18,12 @@ namespace ExerciceForum.Classes
         }
         public override string ToString()
         {
-            return $"Sujet : {Sujet} Descriptif : {Descriptif}";
+            string concatReponse = "";
+            if (Reponse != "")
+            {
+                concatReponse = $"Reponse : {Reponse}";
+            }
+            return $"Sujet : {Sujet} Descriptif : {Descriptif}" + concatReponse;
         }
     }
 }

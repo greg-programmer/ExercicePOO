@@ -17,12 +17,25 @@ namespace ExerciceForum.Classes
         {
             Forum.Nouvelles.Add(nouvelle);            
         }
-        public void ConsulterNouvelle()
+        public void RepondreAUneNouvelle(string reponse,string sujet)
+        {
+           var a  = Forum.Nouvelles.FirstOrDefault(a => a.Sujet == sujet);
+            if(a != null)
+            {
+                a.Reponse = reponse;
+            }          
+        }
+        public void ConsulterNouvelles()
         {
             foreach (var nouvelles in Forum.Nouvelles)
             {
                 Console.WriteLine(nouvelles);
             }
+        }
+        public void ConsulterUneNouvelle(string sujetRechercher)
+        {
+            var a = Forum.Nouvelles.FirstOrDefault(a => a.Sujet == sujetRechercher);
+            Console.WriteLine(a);
         }
         public override string ToString()
         {

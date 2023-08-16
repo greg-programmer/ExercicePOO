@@ -10,6 +10,6 @@ namespace ExerciceForum.Interfaces
     internal interface IAbonne
     {
         void AjouterUneNouvelle(Nouvelle nouvelle);
-        void ConsulterNouvelle();
+        void ConsulterNouvelles();
     }
 }

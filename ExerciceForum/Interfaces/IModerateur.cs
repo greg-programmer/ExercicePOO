@@ -9,10 +9,10 @@ namespace ExerciceForum.Interfaces
 {
     internal interface IModerateur
     {
-        void SupprimerUneNouvelle(string nouvelleASupprimer);
+        void SupprimerUneNouvelle(string sujet);
         void BannirUnAbonne(string Nom, string prenom);
         void AjouterUnAbonne(Abonne abonne);
-        void ConsulterNouvelle();
+        void ConsulterNouvelles();
         void ListerAbonnes();
 
     }
