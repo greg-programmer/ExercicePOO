@@ -76,7 +76,7 @@ namespace ExerciceForum.Classes
                                 moderateurA.ConsulterNouvelles();
                                 break;
                             case "5":
-                                //L'abonné Grégory Schoemaecker est connecté//
+                                //On considère que l'abonné Grégory Schoemaecker est connecté//
                                 var abonneA = Forum.Abonnes.FirstOrDefault(abo => abo.Nom == "Schoemaecker" && abo.Prenom == "Grégory");
                                 Console.Write("Choisir la nouvelle à consulter(Notez le sujet à consulter) : ");
                                 string sujetAconsulter = Console.ReadLine();
@@ -92,7 +92,7 @@ namespace ExerciceForum.Classes
                                 Console.Write("Descriptif : ");
                                 string descriptif = Console.ReadLine();
                                 Nouvelle nouvelle = new Nouvelle(sujet, descriptif);
-                                //L'abonné Grégory Schoemaecker est connecté//
+                                //On considère que l'abonné Grégory Schoemaecker est connecté//
                                 abonneA = Forum.Abonnes.FirstOrDefault(abo => abo.Nom == "Schoemaecker" && abo.Prenom == "Grégory");
                                 if(abonneA != null)
                                 {
